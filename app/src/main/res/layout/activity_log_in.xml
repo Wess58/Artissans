@@ -8,18 +8,19 @@
 
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="119dp"
         android:ems="10"
+        android:hint="Username or Email"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:drawableRight="@drawable/smiley"/>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -27,7 +28,9 @@
         android:layout_marginTop="201dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:drawableRight="@drawable/notvisible"
+        />
 
     <Button
         android:id="@+id/button"
@@ -36,7 +39,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="255dp"
-        android:text="Button" />
+        android:text="login"
+        android:textStyle="bold" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -45,7 +49,20 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="213dp"
-        android:text="CheckBox" />
+        android:checked="true"
+        android:text="Stay Logged in?" />
+
+    <TextView
+        android:id="@+id/LOGINtextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/checkBox"
+        android:layout_marginTop="44dp"
+        android:drawableRight="@drawable/Login"
+        android:text="LOGIN"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
