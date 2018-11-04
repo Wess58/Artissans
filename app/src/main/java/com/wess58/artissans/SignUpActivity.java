@@ -1,7 +1,10 @@
 package com.wess58.artissans;
 
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,5 +28,19 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
+
+        Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/UnifrakturMaguntia/UnifrakturMaguntia-Book.ttf");
+        mSignUpTextView.setTypeface(oldEnglishFonts);
+
+        Typeface modulaFonts = Typeface.createFromAsset(getAssets(), "fonts/Medula_One/MedulaOne-Regular.ttf");
+        mEmailConfirmText.setTypeface(modulaFonts);
+
+        mSignUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

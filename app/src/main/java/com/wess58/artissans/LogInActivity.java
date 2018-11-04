@@ -1,7 +1,10 @@
 package com.wess58.artissans;
 
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -17,11 +20,33 @@ public class LogInActivity extends AppCompatActivity {
     @BindView(R.id.button) Button mLoginButton;
     @BindView(R.id.checkBox) CheckBox mStayLoggedin;
     @BindView(R.id.loginText) TextView mLoginTextView;
+    @BindView(R.id.signUpLink) TextView mSignUpLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         ButterKnife.bind(this);
+
+        Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/UnifrakturMaguntia/UnifrakturMaguntia-Book.ttf");
+        mLoginTextView.setTypeface( oldEnglishFonts);
+
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this, CategoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mSignUpLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
