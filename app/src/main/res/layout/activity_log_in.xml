@@ -20,7 +20,7 @@
         android:drawableRight="@drawable/smiley"/>
 
     <EditText
-        android:id="@+id/Password"
+        android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -53,7 +53,7 @@
         android:text="Stay Logged in?" />
 
     <TextView
-        android:id="@+id/LOGINtextView"
+        android:id="@+id/loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
