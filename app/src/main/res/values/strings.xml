@@ -13,4 +13,19 @@
     <string name="title_section3">Section 3</string>
 
     <string name="action_example">Example action</string>
+    <string name="phone">Phone</string>
+    <string name="submit">Submit</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="lastname">LastName</string>
+    <string name="firstname">FirstName</string>
+    <string name="About">
+        Welcome to Artissans App.Our aim is to bring people with this glorious artistic
+        power to imagine, innovate and create images beyond normal comprehension because we believe
+        making art is a passion.
+        Share your ideas and meet new artists around you and learn from the greatest ideas yet.
+        Explore the possible impossibilities we've brought you!
+    </string>
+    <string name="dialog"> Dont have an account?</string>
+    <string name="SignUpLink">Sign Up</string>
 </resources>
