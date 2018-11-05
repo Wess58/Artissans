@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         Typeface modulaFonts = Typeface.createFromAsset(getAssets(), "fonts/Medula_One/MedulaOne-Regular.ttf");
         mAboutTextView.setTypeface(modulaFonts);
-        Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/UnifrakturMaguntia/UnifrakturMaguntia-Book.ttf");
+        Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/Reem_Kufi/ReemKufi-Regular.ttf");
         mWelcomeTextView.setTypeface(oldEnglishFonts);
 
         mLoginMain.setOnClickListener(new View.OnClickListener() {
