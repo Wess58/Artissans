@@ -18,6 +18,7 @@
         android:layout_marginTop="40sp"
         android:text="LOGIN"
         android:textSize="30sp"
+        android:textColor="#000"
         android:textStyle="bold" />
 
     <EditText
