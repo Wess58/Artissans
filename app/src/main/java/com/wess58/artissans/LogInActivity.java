@@ -28,7 +28,7 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         ButterKnife.bind(this);
 
-        Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/UnifrakturMaguntia/UnifrakturMaguntia-Book.ttf");
+        Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/Reem_Kufi/ReemKufi-Regular.ttf");
         mLoginTextView.setTypeface( oldEnglishFonts);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
