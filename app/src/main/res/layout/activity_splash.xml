@@ -28,6 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="143dp"
         android:text="@string/app_name"
+        android:textColor="#000"
         android:textSize="50sp" />
 
 </RelativeLayout>
