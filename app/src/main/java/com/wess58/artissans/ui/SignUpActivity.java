@@ -1,4 +1,4 @@
-package com.wess58.artissans;
+package com.wess58.artissans.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.wess58.artissans.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
