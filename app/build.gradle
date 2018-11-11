@@ -10,6 +10,12 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    //API KEY BUILDCONFIG
+    buildTypes.each {
+        it.buildConfigField( 'String', 'ARTSY_API_KEY', ArtsyApiKey)
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -45,4 +51,5 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
 }
