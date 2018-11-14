@@ -3,13 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@drawable/bckgrndn"
     android:padding="10sp"
     tools:context=".ui.NewsActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/art"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10sp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FFF"
+            />
+
+    </RelativeLayout>
+
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Art News"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        />
 
 
     <android.support.v7.widget.RecyclerView
