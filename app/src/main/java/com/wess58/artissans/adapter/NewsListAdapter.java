@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -18,7 +19,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsViewHolder> {
 
-
+    public static final int MAX_WIDTH = 500;
+    public static final int MAX_HEIGHT = 700;
     private ArrayList<News> mNews= new ArrayList<>();
     private Context mContext;
 
@@ -51,7 +53,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
         @BindView(R.id.techniqueTextView) TextView mTechniqueTextView;
         @BindView(R.id.copyrightTextView) TextView mCopyrightTextView;
         @BindView(R.id.urlTextView) TextView mUrlTextView;
-        @BindView(R.id.primaryImageView) CircleImageView mPrimaryImageView;
+        @BindView(R.id.primaryImageView) ImageView mPrimaryImageView;
 
         private Context mContext;
 
@@ -63,11 +65,11 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
         }
 
         public void bindNews(News artNews) {
-            Picasso.get().load(artNews.getmImage()).into(mPrimaryImageView);
-            mAccessionyearTextView.setText(artNews.getmAccessionYear());
-            mTechniqueTextView.setText(artNews.getmTechnique());
-            mCopyrightTextView.setText(artNews.getmCopyright());
-            mUrlTextView.setText(artNews.getmUrl());
+            Picasso.get().load(artNews.getmImage()).resize(MAX_WIDTH, MAX_HEIGHT).into(mPrimaryImageView);
+            mAccessionyearTextView.setText("Accession Year\n" + artNews.getmAccessionYear());
+            mTechniqueTextView.setText("Technique Used \n" + artNews.getmTechnique());
+            mCopyrightTextView.setText("Copyright \n" + artNews.getmCopyright());
+            mUrlTextView.setText("Read Article: \n" + artNews.getmUrl());
 
         }
     }

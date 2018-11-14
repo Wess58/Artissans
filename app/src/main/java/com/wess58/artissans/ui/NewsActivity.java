@@ -65,13 +65,6 @@ public class NewsActivity extends AppCompatActivity {
                         mRecyclerNewsView.setLayoutManager(layoutManager);
                         mRecyclerNewsView.setHasFixedSize(true);
 
-                        for(News news: mNews){
-                            Log.d(TAG, "Year: " + news.getmAccessionYear());
-                            Log.d(TAG, "Technique: " + news.getmTechnique());
-                            Log.d(TAG, "copyright: " + news.getmCopyright());
-                            Log.d(TAG, "Image: " + news.getmImage());
-                            Log.d(TAG, "url: " + news.getmUrl());
-                        }
                     }
                 });
             }
