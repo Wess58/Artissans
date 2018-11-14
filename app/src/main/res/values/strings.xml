@@ -20,7 +20,7 @@
     <string name="lastname">LastName</string>
     <string name="firstname">FirstName</string>
     <string name="welcome">Welcome To Artisans</string>
-    <string name="confirmation">Check your Email to get link for credenciat confirmation</string>
+    <string name="confirmation">Check your Email to get link for credentials confirmation</string>
     <string name="secured">All your info is kept confidential!</string>
     <string name="About">
         Welcome to Artissans App.Our aim is to bring people with this glorious artistic
@@ -31,4 +31,5 @@
     </string>
     <string name="dialog"> Don\'t have an account?</string>
     <string name="SignUpLink">Sign Up</string>
+    <string name="footer">\@2018 Artissans</string>
 </resources>
