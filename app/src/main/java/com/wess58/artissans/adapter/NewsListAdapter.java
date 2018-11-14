@@ -19,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsViewHolder> {
 
-    public static final int MAX_WIDTH = 500;
+    public static final int MAX_WIDTH = 550;
     public static final int MAX_HEIGHT = 700;
     private ArrayList<News> mNews= new ArrayList<>();
     private Context mContext;
@@ -62,6 +62,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+
+
         }
 
         public void bindNews(News artNews) {
