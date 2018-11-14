@@ -2,61 +2,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/gradient"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10sp"
     android:padding="5sp"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/primaryImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10sp"
-
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/accessionyearTextView"
+        <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+            app:cardCornerRadius="5sp"
 
-            />
+            >
 
-        <TextView
-            android:id="@+id/techniqueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-
-            />
-
-        <TextView
-            android:id="@+id/copyrightTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10sp"
+                >
 
 
-            />
+            <ImageView
+                android:id="@+id/primaryImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10sp"
 
-        <TextView
-            android:id="@+id/urlTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-
-            />
+                />
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/accessionyearTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:id="@+id/techniqueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:id="@+id/copyrightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+
+
+                />
+
+            <TextView
+                android:id="@+id/urlTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textIsSelectable="true"
+
+                />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+
 
 
 </LinearLayout>
