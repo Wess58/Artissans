@@ -1,4 +1,4 @@
-package com.wess58.artissans;
+package com.wess58.artissans.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.wess58.artissans.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +36,7 @@ public class LogInActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LogInActivity.this, CategoryActivity.class);
+                Intent intent = new Intent(LogInActivity.this, NewsActivity.class);
                 startActivity(intent);
             }
         });
