@@ -35,7 +35,7 @@ public class CategoryActivity extends AppCompatActivity {
         //we'll create an ArrayAdapter and set our ListView adapter to the new adapter
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, categories );
         mCategoriesList.setAdapter(adapter);
-        
+
 
 
     }
