@@ -18,11 +18,11 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.SinguptextView) TextView mSignUpTextView;
     @BindView (R.id.FirstName) EditText mFirstName;
     @BindView(R.id.LastName) EditText mLastName;
-    @BindView(R.id.UsernameSignUp) EditText mUsernameSignUp;
     @BindView(R.id.emailtext) EditText mEmailText;
     @BindView(R.id.Phone) EditText mPhone;
     @BindView(R.id.signUp) Button mSignUpButton;
     @BindView(R.id.emailConfirm) TextView mEmailConfirmText;
+    @BindView(R.id.Passord) EditText mPasswordSignUp;
 
 
     @Override

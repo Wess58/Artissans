@@ -13,7 +13,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SplashActivity extends AppCompatActivity {
-@BindView(R.id.splashText) TextView mSplashText;    @Override
+@BindView(R.id.splashText) TextView mSplashText;
+@BindView(R.id.footer) TextView mFooter;
+
+
+@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
@@ -21,6 +25,9 @@ public class SplashActivity extends AppCompatActivity {
 
         Typeface lobsterFonts = Typeface.createFromAsset(getAssets(), "fonts/Lobster_Two/LobsterTwo-Regular.ttf");
         mSplashText.setTypeface(lobsterFonts);
+
+        Typeface modulaFonts = Typeface.createFromAsset(getAssets(), "fonts/Medula_One/MedulaOne-Regular.ttf");
+        mFooter.setTypeface(modulaFonts);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

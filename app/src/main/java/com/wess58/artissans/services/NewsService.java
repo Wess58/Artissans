@@ -48,10 +48,10 @@ public class NewsService {
 
                     JSONObject newsJSON = recordsJSON.getJSONObject(i);
                     String accessionyear = newsJSON.getString("accessionyear");
-                    String technique = newsJSON.optString("technique", "technique not mentioned");
+                    String technique = newsJSON.getString("technique");
                     String copyright = newsJSON.getString("copyright");
                     String url = newsJSON.getString("url");
-                    String image = newsJSON.getString("primaryimageurl");
+                    String image = newsJSON.optString("primaryimageurl", "NO IMAGES");
                     News news = new News(accessionyear, technique, copyright, url, image);
                     artNews.add(news);
 
