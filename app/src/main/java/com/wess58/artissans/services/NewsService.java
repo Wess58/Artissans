@@ -51,8 +51,9 @@ public class NewsService {
                     String technique = newsJSON.getString("technique");
                     String copyright = newsJSON.getString("copyright");
                     String url = newsJSON.getString("url");
+                    String classification = newsJSON.getString("classification");
                     String image = newsJSON.optString("primaryimageurl", "NO IMAGES");
-                    News news = new News(accessionyear, technique, copyright, url, image);
+                    News news = new News(accessionyear, technique, copyright, url, image, classification);
                     artNews.add(news);
 
                 }

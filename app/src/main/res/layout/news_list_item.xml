@@ -40,6 +40,15 @@
 
                 />
 
+                <TextView
+                    android:id="@+id/classificationTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+
+
+                    />
+
             <TextView
                 android:id="@+id/techniqueTextView"
                 android:layout_width="wrap_content"
@@ -48,7 +57,8 @@
 
                 />
 
-            <TextView
+
+                <TextView
                 android:id="@+id/copyrightTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

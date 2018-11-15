@@ -7,14 +7,16 @@ public class News {
     private String mCopyright;
     private String mUrl;
     private String mImage;
+    private String mClass;
 
-    public News(String accessionyear, String technique, String copyright, String url, String image) {
+    public News(String accessionyear, String technique, String copyright, String url, String image, String classification) {
 
             this.mAccessionYear = accessionyear;
             this.mTechnique = technique;
             this.mCopyright = copyright;
             this.mUrl = url;
             this.mImage = image;
+            this.mClass = classification;
 
     }
 
@@ -36,5 +38,9 @@ public class News {
 
     public String getmImage() {
         return mImage;
+    }
+
+    public String getmClass() {
+        return mClass;
     }
 }

@@ -54,6 +54,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
         @BindView(R.id.copyrightTextView) TextView mCopyrightTextView;
         @BindView(R.id.urlTextView) TextView mUrlTextView;
         @BindView(R.id.primaryImageView) ImageView mPrimaryImageView;
+        @BindView(R.id.classificationTextView) TextView mClassificationTextView;
 
         private Context mContext;
 
@@ -72,6 +73,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
             mTechniqueTextView.setText("Technique Used \n" + artNews.getmTechnique());
             mCopyrightTextView.setText("Copyright \n" + artNews.getmCopyright());
             mUrlTextView.setText("Read Article: \n" + artNews.getmUrl());
+            mClassificationTextView.setText("Classification \n" + artNews.getmClass());
 
         }
     }
