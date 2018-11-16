@@ -18,6 +18,17 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/home/wess/Downloads/softwares/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_link_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="image">
                                         <value>
                                           <PersistentState>
@@ -33,10 +44,10 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="backgroundColor" value="fdfdfd" />
+                                      <entry key="iconShape" value="NONE" />
                                       <entry key="imageAsset" value="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/art.png" />
-                                      <entry key="outputName" value="logo" />
+                                      <entry key="outputName" value="link" />
                                     </map>
                                   </option>
                                 </PersistentState>

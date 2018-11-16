@@ -35,6 +35,7 @@ public class NewsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         getNews();
 
+
     }
 
     private void getNews() {
