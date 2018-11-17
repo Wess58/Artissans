@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "164521015512",
+    "firebase_url": "https://artissans-1541997934229.firebaseio.com",
+    "project_id": "artissans-1541997934229",
+    "storage_bucket": "artissans-1541997934229.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164521015512:android:40fc7d8bd7c7c70b",
+        "android_client_info": {
+          "package_name": "com.wess58.artissans"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164521015512-9n8suii0a050qks189liseobbelj06g6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wess58.artissans",
+            "certificate_hash": "343784aa9543a5a9b54b37aee56b733002efd8eb"
+          }
+        },
+        {
+          "client_id": "164521015512-q475kuktinqhnir49t1e41f9iqokfamr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMQFOfYcibwlnElXHhVcJlTbje8TK5o2g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164521015512-q475kuktinqhnir49t1e41f9iqokfamr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
