@@ -68,7 +68,30 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         mSignUpButton.setOnClickListener(this);
     }
 
-   
+
+    //<---VALIDATE FORMS START
+    private boolean isValidEmail(String email) {
+        boolean isGoodEmail =
+                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if (!isGoodEmail) {
+            mEmailText.setError("enter a valid email address");
+            return false;
+        }
+        return isGoodEmail;
+    }
+
+
+    private boolean isValidPassword(String password) {
+        if (password.length() < 6) {
+            mPasswordSignUp.setError("create a password with at least 6 characters");
+            return false;
+        }
+        return true;
+    }
+
+    //VALIDATE FORM END --->
+
+
 
 
     //< - - - onStop and onStart Overrides Start
