@@ -15,11 +15,10 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsViewHolder> {
 
-    public static final int MAX_WIDTH = 550;
+    public static final int MAX_WIDTH = 600;
     public static final int MAX_HEIGHT = 700;
     private ArrayList<News> mNews= new ArrayList<>();
     private Context mContext;
@@ -68,12 +67,12 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
         }
 
         public void bindNews(News artNews) {
-            Picasso.get().load(artNews.getmImage()).resize(MAX_WIDTH, MAX_HEIGHT).into(mPrimaryImageView);
-            mAccessionyearTextView.setText("Accession Year\n" + artNews.getmAccessionYear());
-            mTechniqueTextView.setText("Technique Used \n" + artNews.getmTechnique());
-            mCopyrightTextView.setText("Copyright \n" + artNews.getmCopyright());
-            mUrlTextView.setText("Read Article: \n" + artNews.getmUrl());
-            mClassificationTextView.setText("Classification \n" + artNews.getmClass());
+            Picasso.get().load(artNews.getmImage()).placeholder(R.drawable.art).resize(MAX_WIDTH, MAX_HEIGHT).into(mPrimaryImageView);
+            mAccessionyearTextView.setText(artNews.getmAccessionYear());
+            mTechniqueTextView.setText(artNews.getmTechnique());
+            mCopyrightTextView.setText(artNews.getmCopyright());
+            mUrlTextView.setText(artNews.getmUrl());
+            mClassificationTextView.setText(artNews.getmClass());
 
         }
     }

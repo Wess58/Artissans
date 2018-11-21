@@ -29,7 +29,7 @@
                 android:value="com.wess58.artissans.ui.MainActivity" />
         </activity>
         <activity android:name=".ui.CategoryActivity" />
-        <activity android:name=".ui.NewsActivity"></activity>
+        <activity android:name=".ui.NewsActivity" />
     </application>
 
 </manifest>

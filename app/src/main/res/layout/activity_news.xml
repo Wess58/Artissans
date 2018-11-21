@@ -23,12 +23,12 @@
         >
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="54dp"
             android:src="@drawable/art"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_margin="10sp"
+            android:layout_margin="5sp"
             app:civ_border_width="2dp"
             app:civ_border_color="#FFF"
             />
@@ -40,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Art News"
+        android:textColor="#000"
         android:textSize="22sp"
         android:layout_gravity="center"
         />
