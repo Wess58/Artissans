@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsViewHolder> {
 
@@ -68,7 +67,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
         }
 
         public void bindNews(News artNews) {
-            Picasso.get().load(artNews.getmImage()).placeholder(R.drawable.bkgrndm).resize(MAX_WIDTH, MAX_HEIGHT).into(mPrimaryImageView);
+            Picasso.get().load(artNews.getmImage()).placeholder(R.drawable.art).resize(MAX_WIDTH, MAX_HEIGHT).into(mPrimaryImageView);
             mAccessionyearTextView.setText(artNews.getmAccessionYear());
             mTechniqueTextView.setText(artNews.getmTechnique());
             mCopyrightTextView.setText(artNews.getmCopyright());
