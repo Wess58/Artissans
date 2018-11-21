@@ -6,15 +6,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bckgrndn"
-    android:padding="10sp"
     tools:context=".ui.NewsActivity">
 
-    <!--<ProgressBar-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="end"-->
-        <!--android:progress="50"-->
-        <!--android:progressTint="#000" />-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/newstoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/lightorange"
+        android:elevation="4dp"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:popupTheme="@style/Base.ThemeOverlay.AppCompat.Dark"
+        />
+
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,6 +42,7 @@
 
 
     <TextView
+        android:id="@+id/newsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Art News"
