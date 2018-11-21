@@ -68,6 +68,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         mSignUpButton.setOnClickListener(this);
     }
 
+    //<--- PROGRESSDIALOG START
+    //setCancelable() to "false" so that users cannot close the dialog manually.
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading ...");
+        mAuthProgressDialog.setMessage("Authenticating in Progress...");
+        mAuthProgressDialog.setCancelable(false);
+
+    }
+    //PROGRESSDIALOG END --->
 
     //<---VALIDATE FORMS START
     private boolean isValidEmail(String email) {
