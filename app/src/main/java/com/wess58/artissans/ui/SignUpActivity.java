@@ -1,6 +1,7 @@
 package com.wess58.artissans.ui;
 
 
+import android.app.ProgressDialog;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +42,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     //member variable to get the instance of the FirebaseAuth object
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
+    private ProgressDialog mAuthProgressDialog;
 
 
 
@@ -53,7 +55,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         //For Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
 //        createAuthStateListener();
-
+        createAuthProgressDialog();
 
 
         Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/Reem_Kufi/ReemKufi-Regular.ttf");
@@ -65,6 +67,42 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         //setting onClickListener New Way :-)
         mSignUpButton.setOnClickListener(this);
     }
+
+    //<--- PROGRESSDIALOG START
+    //setCancelable() to "false" so that users cannot close the dialog manually.
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading ...");
+        mAuthProgressDialog.setMessage("Authenticating in Progress...");
+        mAuthProgressDialog.setCancelable(false);
+
+    }
+    //PROGRESSDIALOG END --->
+
+    //<---VALIDATE FORMS START
+    private boolean isValidEmail(String email) {
+        boolean isGoodEmail =
+                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if (!isGoodEmail) {
+            mEmailText.setError("enter a valid email address");
+            return false;
+        }
+        return isGoodEmail;
+    }
+
+
+    private boolean isValidPassword(String password) {
+        if (password.length() < 6) {
+            mPasswordSignUp.setError("create a password with at least 6 characters");
+            return false;
+        }
+        return true;
+    }
+
+    //VALIDATE FORM END --->
+
+
+
 
     //< - - - onStop and onStart Overrides Start
 
@@ -105,11 +143,21 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         final String phone = mPhone.getText().toString().trim();
         String password = mPasswordSignUp.getText().toString().trim();
 
+        boolean validEmail = isValidEmail(email);
+        boolean validPassword = isValidPassword(password);
+        if(!validEmail || !validPassword) return;
+
+        //this line is only called after the form validation methods have returned true
+        mAuthProgressDialog.show();
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
 
             @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+//we dismiss the dialog so that the user may either continue using the app, or view any error messages.
+                mAuthProgressDialog.dismiss();
+
                 if (task.isSuccessful()) {
                     Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
                     startActivity(intent);
@@ -127,46 +175,5 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         }
 
-    // < - - - LOGIN USER -> TO SORT LATER IN LOGIN_ACTIVITY
-    //Listening for User Authentication: here we need to inform our application when the user's account is successfully authenticated
-
-    //FirebaseAuth.AuthStateListener interface (This interface listens to changes in the current AuthState)
-    //The onAuthStateChanged() method returns FirebaseAuth data.
-
-//    private void createAuthStateListener(){
-//
-//        mAuthListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//
-//                final FirebaseUser user = firebaseAuth.getCurrentUser();
-//
-//                if (user != null){
-//                    Intent intent = new Intent( SignUpActivity.this, NewsActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(intent);
-//                    finish();
-//                }
-//            }
-//        };
-//    }
-
-    //LOGIN USER END - - - >
-
-
-
-
-
-    //
 
 }
-
-
-
-
-
-
-
-//    Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
-//    startActivity(intent);
-//    finish();

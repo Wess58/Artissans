@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bkgrndm"
     tools:context=".ui.MainActivity">
@@ -60,10 +60,10 @@
             android:id="@+id/loginMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/bluegreen"
+            android:background="@drawable/buttonsstyle"
             android:layout_margin="5sp"
             android:text="Login"
-            android:textColor="#FFF"
+            android:textColor="#000"
             android:layout_weight="1"/>
 
 
@@ -71,10 +71,10 @@
             android:id="@+id/signUpMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/bluegreen"
+            android:background="@drawable/buttonsstyle"
             android:layout_margin="5sp"
             android:text="Sign Up"
-            android:textColor="#FFF"
+            android:textColor="#000"
             android:layout_weight="1"/>
 
     </LinearLayout>
@@ -84,6 +84,3 @@
 
 
 </LinearLayout>
-
-    <!--int firstThreeParity = integers[0]%2 + integers[1]%2 + integers[2]%2;-->
-    <!--int rem = firstThreeParity < 2 ? 1 : 0;-->

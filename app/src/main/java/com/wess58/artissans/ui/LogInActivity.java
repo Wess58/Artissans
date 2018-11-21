@@ -1,5 +1,6 @@
 package com.wess58.artissans.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -32,8 +33,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.signUpLink) TextView mSignUpLink;
 
     private FirebaseAuth mAuth;
+    private ProgressDialog mAuthProgressDialog;
 
 
+
+    @Override
+    public  void onBackPressed(){
+        moveTaskToBack(false);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
+        createAuthProgressDialog();
+
 
 
 
@@ -51,9 +60,40 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         mLoginButton.setOnClickListener(this);
         mSignUpLink.setOnClickListener(this);
+    }
 
+    //<--- PROGRESSDIALOG START
+    //setCancelable() to "false" so that users cannot close the dialog manually.
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading ...");
+        mAuthProgressDialog.setMessage("Authenticating in Progress...");
+        mAuthProgressDialog.setCancelable(false);
 
     }
+    //PROGRESSDIALOG END --->
+
+    //<---VALIDATE FORMS START
+    private boolean isValidEmail(String email) {
+        boolean isGoodEmail =
+                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if (!isGoodEmail) {
+            mEmail.setError("enter a valid email address");
+            return false;
+        }
+        return isGoodEmail;
+    }
+
+
+    private boolean isValidPassword(String password) {
+        if (password.length() < 6) {
+           mPassword.setError("create a password with at least 6 characters");
+            return false;
+        }
+        return true;
+    }
+
+    //VALIDATE FORM END --->
 
     @Override
     public void onClick(View v) {
@@ -74,14 +114,21 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         final String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
 
+        boolean validEmail = isValidEmail(email);
+        boolean validPassword = isValidPassword(password);
+        if(!validEmail || !validPassword) return;
+
+        mAuthProgressDialog.show();
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        mAuthProgressDialog.dismiss();
                         if (task.isSuccessful()) {
                             Intent intent = new Intent(LogInActivity.this, NewsActivity.class);
                             startActivity(intent);
-                            finish();
+
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -91,8 +138,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 });
-
-
     }
 
 

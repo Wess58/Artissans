@@ -14,11 +14,16 @@ import com.wess58.artissans.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  View.OnClickListener{
     @BindView(R.id.aboutTextView) TextView mAboutTextView;
     @BindView(R.id.welcomeTextView) TextView mWelcomeTextView;
     @BindView(R.id.loginMain) Button mLoginMain;
     @BindView(R.id.signUpMain) Button msignUpMain;
+
+    @Override
+    public  void onBackPressed(){
+        moveTaskToBack(false);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +36,25 @@ public class MainActivity extends AppCompatActivity {
         Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/Reem_Kufi/ReemKufi-Regular.ttf");
         mWelcomeTextView.setTypeface(oldEnglishFonts);
 
-        mLoginMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LogInActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        msignUpMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
+        mLoginMain.setOnClickListener(this);
+        msignUpMain.setOnClickListener(this);
 
     }
+
+    @Override
+    public void onClick(View v) {
+        if(v == mLoginMain){
+            Intent intent = new Intent(MainActivity.this, LogInActivity.class);
+            startActivity(intent);
+
+        }
+
+        if (v == msignUpMain){
+            Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+            startActivity(intent);
+
+        }
+
+    }
+
 }
