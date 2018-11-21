@@ -13,7 +13,6 @@
             app:cardCornerRadius="5sp"
 
             >
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -23,47 +22,81 @@
 
 
             <ImageView
+                android:src="@drawable/art"
                 android:id="@+id/primaryImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10sp"
-
                 />
 
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:src="@mipmap/calendar"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Creation Year"
-                    android:drawableLeft="@mipmap/calendar"
                     android:textStyle="bold"
+                    />
 
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/accessionyearTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
                     />
 
-            <TextView
-                android:id="@+id/accessionyearTextView"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                />
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:src="@mipmap/classification"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CLassification"
-                    android:drawableLeft="@mipmap/classification"
                     android:textStyle="bold"
 
 
                     />
+
+            </LinearLayout>
 
                 <TextView
                     android:id="@+id/classificationTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
+                    />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:src="@mipmap/technique"
                     />
 
                 <TextView
@@ -74,46 +107,77 @@
 
                     />
 
-              <TextView
-                android:id="@+id/techniqueTextView"
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/techniqueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
 
-                />
+                >
+                <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:src="@mipmap/copyright"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/copyright"
                     android:text="Copyright/ Ownership"
                     android:textStyle="bold"
 
                     />
 
 
-                <TextView
-                android:id="@+id/copyrightTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                />
+            </LinearLayout>
 
                 <TextView
+                    android:id="@+id/copyrightTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/link"
-                    android:text="Visit Website"
-                    android:textStyle="bold"
 
                     />
 
-            <TextView
-                android:id="@+id/urlTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textIsSelectable="true"
 
-                />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    >
+                    <ImageView
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:src="@mipmap/link"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Visit Website"
+                        android:textStyle="bold"
+
+                        />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/urlTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"
+
+                    />
+
+
+
+
 
             </LinearLayout>
 
