@@ -39,21 +39,10 @@
         android:text="LOGIN"
         android:textSize="30sp"
         android:textColor="#000"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/Phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10sp"
-        android:background="#fff"
-        android:padding="10sp"
-        android:drawableRight="@drawable/contact"
-        android:drawableTint="#000"
-        android:ems="12"
-        android:hint="Phone"
-        android:inputType="phone" />
+        android:textStyle="bold"
+        android:textCursorDrawable="@color/bluegreen"
+        android:inputType="textEmailAddress"
+        />
 
     <EditText
         android:id="@+id/Email"
@@ -61,33 +50,41 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20sp"
-        android:background="#fff"
+        android:background="@drawable/edittextstyle"
         android:padding="10sp"
-        android:textColorHint="#000"
-        android:drawableEnd="@drawable/smiley"
-        android:drawableTint="#000"
         android:ems="12"
+        android:drawableRight="@drawable/email"
+        android:drawableTint="#000"
         android:hint="Email"
-        android:backgroundTint="#fff"
-        android:nextFocusDown="@id/password1"
-        />
+         />
 
-    <EditText
-        android:id="@+id/password1"
-        android:layout_width="wrap_content"
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="20sp"
-        android:background="#fff"
-        android:padding="10sp"
-        android:ems="12"
-        android:textColorHint="#000"
-        android:drawableRight="@drawable/notvisible"
-        android:drawableTint="#000"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColor="@android:color/black"
-        android:backgroundTint="#fff"/>
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#000"
+        app:hintEnabled="false"
+        >
+
+        <EditText
+            android:id="@+id/password1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/edittextstyle"
+
+            android:padding="10sp"
+            android:ems="12"
+            android:drawableTint="#000"
+            android:hint="Password"
+            android:inputType="textPassword"
+            />
+
+
+    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/button"
@@ -99,7 +96,7 @@
         android:textAllCaps="true"
         android:textStyle="bold"
         android:textColor="#000"
-        android:background="@color/bluegreen" />
+        android:background="@drawable/buttonsstyle" />
 
     <CheckBox
         android:id="@+id/checkBox"
