@@ -62,9 +62,29 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         mSignUpLink.setOnClickListener(this);
     }
 
-  
+    
+
+    //<---VALIDATE FORMS START
+    private boolean isValidEmail(String email) {
+        boolean isGoodEmail =
+                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if (!isGoodEmail) {
+            mEmail.setError("enter a valid email address");
+            return false;
+        }
+        return isGoodEmail;
+    }
 
 
+    private boolean isValidPassword(String password) {
+        if (password.length() < 6) {
+           mPassword.setError("create a password with at least 6 characters");
+            return false;
+        }
+        return true;
+    }
+
+    //VALIDATE FORM END --->
 
     @Override
     public void onClick(View v) {
