@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/lightorange"
+    android:background="@drawable/bckgrndm"
     tools:context=".ui.CategoryActivity">
 
 
@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10sp"
-        android:background="@color/orange"
 
         />
 </LinearLayout>
