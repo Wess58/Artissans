@@ -74,23 +74,19 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     //PROGRESSDIALOG END --->
 
     //<---VALIDATE FORMS START
-    private boolean isValidEmail(String email) {
-        boolean isGoodEmail =
-                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
-        if (!isGoodEmail) {
-            mEmail.setError("enter a valid email address");
-            return false;
-        }
-        return isGoodEmail;
-    }
+    private void loginWithPassword() {
+        String email = mEmail.getText().toString().trim();
+        String password = mPassword.getText().toString().trim();
 
 
-    private boolean isValidPassword(String password) {
-        if (password.length() < 6) {
-           mPassword.setError("create a password with at least 6 characters");
-            return false;
+        if (email.equals("")) {
+            mEmail.setError("Please enter your email");
+            return;
         }
-        return true;
+        if (password.equals("")) {
+            mPassword.setError("Password cannot be blank");
+            return;
+        }
     }
 
     //VALIDATE FORM END --->
@@ -105,6 +101,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         if (v == mLoginButton){
                 SignInUser();
+                loginWithPassword();
         }
 
     }
@@ -113,10 +110,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         final String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
-
-        boolean validEmail = isValidEmail(email);
-        boolean validPassword = isValidPassword(password);
-        if(!validEmail || !validPassword) return;
 
         mAuthProgressDialog.show();
 
@@ -135,10 +128,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(LogInActivity.this, "Invalid Credentials.",
                                     Toast.LENGTH_SHORT).show();
 
+                            }
                         }
-                    }
                 });
+        }
+
     }
-
-
-}
