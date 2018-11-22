@@ -96,7 +96,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         if(v == mSignUpLink){
             Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
             startActivity(intent);
-            finish();
+            
         }
 
         if (v == mLoginButton){
