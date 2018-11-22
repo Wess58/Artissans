@@ -17,8 +17,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
@@ -38,7 +38,7 @@
         android:layout_marginTop="40sp"
         android:text="LOGIN"
         android:textSize="30sp"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textStyle="bold"
         android:textCursorDrawable="@color/bluegreen"
         android:inputType="textEmailAddress"
@@ -74,7 +74,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/edittextstyle"
-
             android:padding="10sp"
             android:ems="12"
             android:drawableTint="#000"
