@@ -1,6 +1,8 @@
 package com.wess58.artissans.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +35,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
     public NewsListAdapter.NewsViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_list_item, parent, false);
         NewsViewHolder viewHolder = new NewsViewHolder(view);
+        ButterKnife.bind(this, view);
         return viewHolder;
     }
 
@@ -62,9 +65,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
-
-
+;
         }
+
 
         public void bindNews(News artNews) {
             Picasso.get().load(artNews.getmImage()).placeholder(R.drawable.art).resize(MAX_WIDTH, MAX_HEIGHT).into(mPrimaryImageView);
@@ -73,6 +76,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
             mCopyrightTextView.setText(artNews.getmCopyright());
             mUrlTextView.setText(artNews.getmUrl());
             mClassificationTextView.setText(artNews.getmClass());
+
 
         }
     }
