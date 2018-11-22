@@ -124,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/SignUpLink"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#fff"
         android:textStyle="bold" />
 
 
