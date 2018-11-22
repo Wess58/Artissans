@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -74,23 +75,19 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     //PROGRESSDIALOG END --->
 
     //<---VALIDATE FORMS START
-    private boolean isValidEmail(String email) {
-        boolean isGoodEmail =
-                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
-        if (!isGoodEmail) {
-            mEmail.setError("enter a valid email address");
-            return false;
-        }
-        return isGoodEmail;
-    }
+    private void loginWithPassword() {
+        String email = mEmail.getText().toString().trim();
+        String password = mPassword.getText().toString().trim();
 
 
-    private boolean isValidPassword(String password) {
-        if (password.length() < 6) {
-           mPassword.setError("create a password with at least 6 characters");
-            return false;
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(LogInActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
+            return;
         }
-        return true;
+        if (password.equals("")) {
+            mPassword.setError("Password cannot be blank");
+            return;
+        }
     }
 
     //VALIDATE FORM END --->
@@ -100,11 +97,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         if(v == mSignUpLink){
             Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
             startActivity(intent);
-            finish();
+
         }
 
         if (v == mLoginButton){
-                SignInUser();
+            loginWithPassword();
+            SignInUser();
         }
 
     }
@@ -113,10 +111,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         final String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
-
-        boolean validEmail = isValidEmail(email);
-        boolean validPassword = isValidPassword(password);
-        if(!validEmail || !validPassword) return;
 
         mAuthProgressDialog.show();
 
@@ -135,10 +129,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(LogInActivity.this, "Invalid Credentials.",
                                     Toast.LENGTH_SHORT).show();
 
+                            }
                         }
-                    }
                 });
+        }
+
     }
-
-
-}

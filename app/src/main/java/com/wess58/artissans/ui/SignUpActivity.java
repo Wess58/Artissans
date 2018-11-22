@@ -14,12 +14,15 @@ import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.google.android.gms.common.util.JsonUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.wess58.artissans.R;
+import com.wess58.artissans.models.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +46,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
     private ProgressDialog mAuthProgressDialog;
+    private String fName;
+    private String lName;
+    private String userPhone;
+
 
 
 
@@ -137,11 +144,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         //< - - - CREATE USER START
     private void createNewUser() {
 
-        final String firstName = mFirstName.getText().toString().trim();
-        final String lastName = mLastName.getText().toString().trim();
         final String email = mEmailText.getText().toString().trim();
-        final String phone = mPhone.getText().toString().trim();
         String password = mPasswordSignUp.getText().toString().trim();
+        fName = mFirstName.getText().toString().trim();
+        lName = mLastName.getText().toString().trim();
+        userPhone = mPhone.getText().toString().trim();
+
 
         boolean validEmail = isValidEmail(email);
         boolean validPassword = isValidPassword(password);
@@ -155,7 +163,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-//we dismiss the dialog so that the user may either continue using the app, or view any error messages.
+        //we dismiss the dialog so that the user may either continue using the app, or view any error messages.
                 mAuthProgressDialog.dismiss();
 
                 if (task.isSuccessful()) {
@@ -173,7 +181,30 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
             });
 
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(SignUpActivity.this, "Email Sent.",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         }
+
+
+    //<--- STORING UserDetails START
+
+//    private void writeNewUser(String userID, String fName, String lName, String userPhone){
+//        User user = new User(fName, lName, userPhone);
+//        String json = JsonUtils.ToJson(user);
+//
+//        mDatabaseRef.Child("users").Child(UserID).Child("firstname").Child("lastname").Child("phone").setValueAsync(name);
+//
+//    }
+
+
+    //STORING UserDetails END --->
 
 
 }
