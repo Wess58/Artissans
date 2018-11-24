@@ -40,7 +40,12 @@ Animation uptodown,downtoup;
     mDowntoup.setAnimation(downtoup);
 
     //<--- Rotate image START
-   /
+    RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    rotate.setDuration(2000);
+    rotate.setInterpolator(new LinearInterpolator());
+
+    CircleImageView imageView = findViewById(R.id.imageView);
+    imageView.startAnimation(rotate);
 
     //Rotate image END --->
 
