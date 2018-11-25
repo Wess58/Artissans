@@ -45,8 +45,8 @@ Animation uptodown,downtoup;
 
     //<--- for FadeIn anim
 
-//    Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
-//    mFooter.startAnimation(fadeIn);
+    Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
+    mFooter.startAnimation(fadeIn);
 
     //for FadeIn END --->
 
