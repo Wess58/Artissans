@@ -1,5 +1,6 @@
 package com.wess58.artissans.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.wess58.artissans.Network;
 import com.wess58.artissans.R;
 
 import butterknife.BindView;
@@ -31,6 +34,19 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        //<--- CHECKING INTERNET CONNECTION START
+        if(Network.isInternetAvailable(MainActivity.this)) //returns true if internet available
+        {
+
+        }
+        else
+        {
+            Toast.makeText(MainActivity.this,"No Internet Connection",Toast.LENGTH_LONG).show();
+        }
+
+        //CHECKING INTERNET CONNECTION END --->
+
 
         Typeface modulaFonts = Typeface.createFromAsset(getAssets(), "fonts/Medula_One/MedulaOne-Regular.ttf");
         mAboutTextView.setTypeface(modulaFonts);
