@@ -10,9 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.wess58.artissans.Network;
 import com.wess58.artissans.R;
 import com.wess58.artissans.adapter.NewsListAdapter;
 import com.wess58.artissans.models.News;
@@ -27,9 +29,13 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import android.view.Menu;
+import android.widget.Toast;
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity  {
+    //TO SEE LOGs
     public static final String TAG = NewsActivity.class.getSimpleName();
+
+
     @BindView(R.id.recyclerNewsView) RecyclerView mRecyclerNewsView;
     @BindView(R.id.newsTextView) TextView mNewsTextView;
     private NewsListAdapter mAdapter;
@@ -44,6 +50,9 @@ public class NewsActivity extends AppCompatActivity {
     }
 
     //Creating and Inflating an Overflow Menu START
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -87,7 +96,22 @@ public class NewsActivity extends AppCompatActivity {
 
         Typeface lobsterFonts = Typeface.createFromAsset(getAssets(), "fonts/Lobster_Two/LobsterTwo-Regular.ttf");
         mNewsTextView.setTypeface(lobsterFonts);
+
+        //<--- CHECKING INTERNET CONNECTION START
+        if(Network.isInternetAvailable(NewsActivity.this)) //returns true if internet available
+        {
+
+        }
+        else
+        {
+            Toast.makeText(NewsActivity.this,"No Internet Connection",Toast.LENGTH_LONG).show();
+        }
+
+        //CHECKING INTERNET CONNECTION END --->
     }
+
+
+
 
     private void getNews() {
 
@@ -122,7 +146,6 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
 }
