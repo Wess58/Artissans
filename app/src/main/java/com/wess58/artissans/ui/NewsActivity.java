@@ -75,7 +75,7 @@ public class NewsActivity extends AppCompatActivity  {
     //<--- LOGOUT START && returning to MainActivity on Logout
     private void logout() {
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(NewsActivity.this, MainActivity.class);
+        Intent intent = new Intent(NewsActivity.this, LogInActivity.class);
         startActivity(intent);
         finish();
     }
