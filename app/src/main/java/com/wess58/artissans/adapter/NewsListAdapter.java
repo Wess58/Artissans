@@ -13,12 +13,14 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.wess58.artissans.R;
 import com.wess58.artissans.models.News;
+import com.wess58.artissans.ui.MainActivity;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsViewHolder> {
+public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsViewHolder>  {
 
     public static final int MAX_WIDTH = 600;
     public static final int MAX_HEIGHT = 700;
@@ -31,6 +33,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
     }
 
 
+
     @Override
     public NewsListAdapter.NewsViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_list_item, parent, false);
@@ -38,6 +41,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
         ButterKnife.bind(this, view);
         return viewHolder;
     }
+
+
+
+
+
+
+
 
     @Override
     public void onBindViewHolder( NewsListAdapter.NewsViewHolder holder, int position ) {
@@ -49,7 +59,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
         return mNews.size();
     }
 
-    public class NewsViewHolder extends RecyclerView.ViewHolder{
+
+
+    public class NewsViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.accessionyearTextView) TextView mAccessionyearTextView;
         @BindView(R.id.techniqueTextView) TextView mTechniqueTextView;
@@ -64,6 +76,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
         public NewsViewHolder( View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+//            mUrlTextView.setOnClickListener(this);
             mContext = itemView.getContext();
 ;
         }
@@ -79,5 +92,15 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
 
 
         }
+
+
+//        @Override
+//        public void onClick(View v) {
+//            if(v == mUrlTextView){
+//                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mNews.getmUrl()));
+//                startActivity(webIntent);
+//
+//            }
+//        }
     }
 }
