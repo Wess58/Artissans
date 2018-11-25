@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -22,10 +23,13 @@ public class SplashActivity extends AppCompatActivity {
 
 Animation uptodown,downtoup;
 
-@BindView(R.id.splashText) TextView mSplashText;
+@BindView(R.id.splashText1) TextView mSplashText1;
+@BindView(R.id.splashText2) TextView mSplashText2;
+@BindView(R.id.splashText3) TextView mSplashText3;
 @BindView(R.id.footer) TextView mFooter;
 @BindView(R.id.uptodown) LinearLayout mUptodown;
 @BindView(R.id.downtoup) LinearLayout mDowntoup;
+@BindView(R.id.circleimageView) CircleImageView mCircleImageView;
 
 
 @Override
@@ -39,18 +43,29 @@ Animation uptodown,downtoup;
     mUptodown.setAnimation(uptodown);
     mDowntoup.setAnimation(downtoup);
 
-    //<--- Rotate image START
-    RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-    rotate.setDuration(2000);
-    rotate.setInterpolator(new LinearInterpolator());
+    //<--- for FadeIn anim
 
-    CircleImageView imageView = findViewById(R.id.imageView);
-    imageView.startAnimation(rotate);
+//    Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
+//    mFooter.startAnimation(fadeIn);
+
+    //for FadeIn END --->
+
+
+    //<--- Rotate image START
+
+    RotateAnimation rotate = new RotateAnimation(0, 720, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    rotate.setDuration(3800);
+    rotate.setInterpolator(new LinearInterpolator());
+    mCircleImageView.startAnimation(rotate);
 
     //Rotate image END --->
 
         Typeface lobsterFonts = Typeface.createFromAsset(getAssets(), "fonts/Lobster_Two/LobsterTwo-Regular.ttf");
-        mSplashText.setTypeface(lobsterFonts);
+        mSplashText1.setTypeface(lobsterFonts);
+        mSplashText3.setTypeface(lobsterFonts);
+
+        Typeface brushFonts = Typeface.createFromAsset(getAssets(),"fonts/Permanent_Marker/PermanentMarker-Regular.ttf");
+        mSplashText2.setTypeface(brushFonts);
 
         Typeface modulaFonts = Typeface.createFromAsset(getAssets(), "fonts/Medula_One/MedulaOne-Regular.ttf");
         mFooter.setTypeface(modulaFonts);
@@ -65,4 +80,7 @@ Animation uptodown,downtoup;
             }
         },4000);
     }
+
+
+
 }
