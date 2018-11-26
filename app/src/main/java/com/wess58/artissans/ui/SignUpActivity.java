@@ -113,20 +113,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     //< - - - onStop and onStart Overrides Start
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-//        mAuth.addAuthStateListener(mAuthListener);
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//
+//    }
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        if (mAuthListener != null) {
+//            mAuth.removeAuthStateListener(mAuthListener);
+//        }
+//    }
 
     //onStop and onStart Override END - - - >
 
@@ -181,14 +180,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
             });
 
-        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
-                    Toast.makeText(SignUpActivity.this, "Email Sent.",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()){
+//                    Toast.makeText(SignUpActivity.this, "Email Sent.",Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
         }
 
