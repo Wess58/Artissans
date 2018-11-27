@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ArtItem"
+        android:icon="@drawable/tools"
+        android:iconTint="#000"
+        android:title="Art"
+        />
+    <item
+        android:id="@+id/PostItem"
+        android:icon="@drawable/post"
+        android:iconTint="#000"
+        android:title="Post"
+        />
+    <item
+        android:id="@+id/ProfileItem"
+        android:icon="@drawable/smiley"
+        android:iconTint="#000"
+        android:title="Profile"
+        />
+</menu>
