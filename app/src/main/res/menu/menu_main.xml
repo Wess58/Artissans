@@ -9,6 +9,11 @@
         app:showAsAction="never"
         />
 
+    <item android:id="@+id/navmenuitem"
+        android:visible="true"
+        android:title="Nav"
+        app:showAsAction="never"
 
+        />
 
 </menu>
