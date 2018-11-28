@@ -45,8 +45,9 @@ Animation uptodown,downtoup;
 
     //<--- for FadeIn anim
 
-    Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
-    mFooter.startAnimation(fadeIn);
+//    Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
+//    fadeIn.setDuration(3000);
+//    mFooter.startAnimation(fadeIn);
 
     //for FadeIn END --->
 
@@ -54,7 +55,7 @@ Animation uptodown,downtoup;
     //<--- Rotate image START
 
     RotateAnimation rotate = new RotateAnimation(0, 720, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-    rotate.setDuration(3800);
+    rotate.setDuration(2800);
     rotate.setInterpolator(new LinearInterpolator());
     mCircleImageView.startAnimation(rotate);
 
@@ -78,7 +79,7 @@ Animation uptodown,downtoup;
                 startActivity(intent);
                 finish();
             }
-        },4000);
+        },3000);
     }
 
 

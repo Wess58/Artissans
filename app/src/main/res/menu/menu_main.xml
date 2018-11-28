@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/navmenuitem"
+        android:visible="true"
+        android:title="Profile"
+        app:showAsAction="never"
+
+        />
+
     <item
         android:id="@+id/action_logout"
         android:title="Logout"
         android:visible="true"
         app:showAsAction="never"
-        />
-
-    <item android:id="@+id/navmenuitem"
-        android:visible="true"
-        android:title="Nav"
-        app:showAsAction="never"
-
         />
 
 </menu>

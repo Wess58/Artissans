@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/bluegreen</item>
-        <item name="colorAccent">@color/lightorange</item>
+        <item name="colorAccent">@color/bluegreen</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
