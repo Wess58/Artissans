@@ -88,12 +88,12 @@ public class PostFragment extends Fragment {
     }
 
     //selectImageFromGallery Intent to choose image straight from gallery
-//    private void selectImageFromGallery () {
-//        Intent selectFromGallery = new Intent(Intent.ACTION_GET_CONTENT);
-//        selectFromGallery.setType("image/*");
-//        startActivityForResult(selectFromGallery, REQUEST_SELECT_IMAGE);
-//    }
-//
+    private void selectImageFromGallery () {
+        Intent selectFromGallery = new Intent(Intent.ACTION_GET_CONTENT);
+        selectFromGallery.setType("image/*");
+        startActivityForResult(selectFromGallery, REQUEST_SELECT_IMAGE);
+    }
+
 //    // Launch Camera to Take pics
 //    public void onLaunchCamera() {
 //        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -102,14 +102,14 @@ public class PostFragment extends Fragment {
 //
 //        }
 //    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == REQUEST_SELECT_IMAGE && resultCode == RESULT_OK && data != null) {
-//            uri = data.getData();
-//            mImageButton.setImageURI(uri);
-//        }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_SELECT_IMAGE && resultCode == RESULT_OK && data != null) {
+            uri = data.getData();
+            mImageButton.setImageURI(uri);
+        }
 
 
 
