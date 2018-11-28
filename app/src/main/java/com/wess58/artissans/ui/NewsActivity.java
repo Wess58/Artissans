@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -97,6 +99,10 @@ public class NewsActivity extends AppCompatActivity  {
         Toolbar toolbar = findViewById(R.id.newstoolbar);
         setSupportActionBar(toolbar);
         getNews();
+
+        Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
+        fadeIn.setDuration(3000);
+        mNewsTextView.startAnimation(fadeIn);
 
         Typeface lobsterFonts = Typeface.createFromAsset(getAssets(), "fonts/Lobster_Two/LobsterTwo-Regular.ttf");
         mNewsTextView.setTypeface(lobsterFonts);
