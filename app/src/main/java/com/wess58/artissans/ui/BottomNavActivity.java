@@ -14,6 +14,7 @@ import com.wess58.artissans.R;
 import com.wess58.artissans.fragments.ArtFeedFragment;
 import com.wess58.artissans.fragments.PostFragment;
 import com.wess58.artissans.fragments.ProfileFragment;
+import com.wess58.artissans.fragments.UploadsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +28,7 @@ public class BottomNavActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        savedInstanceState = null;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_nav);
         ButterKnife.bind(this);
@@ -59,18 +61,22 @@ public class BottomNavActivity extends AppCompatActivity implements View.OnClick
                     Fragment fragment;
 
                     switch (menuItem.getItemId()){
+                        case R.id.NewsItem:
+                            fragment = new ArtFeedFragment();
+                            loadFragment(fragment);
+                            return true;
                         case R.id.ArtItem:
-                        fragment = new ArtFeedFragment();
-                        loadFragment(fragment);
-                        return true;
+                            fragment = new UploadsFragment();
+                            loadFragment(fragment);
+                            return true;
                         case R.id.PostItem:
                             fragment = new PostFragment();
                             loadFragment(fragment);
                             return true;
                         case R.id.ProfileItem:
-                        fragment = new ProfileFragment();
-                        loadFragment(fragment);
-                        return true;
+                            fragment = new ProfileFragment();
+                            loadFragment(fragment);
+                            return true;
                     }
                     return false;
                 }

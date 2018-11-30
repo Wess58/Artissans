@@ -3,12 +3,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center_horizontal"
+        android:padding="10sp"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_marginTop="50sp"
+            android:src="@drawable/art"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#000"
+
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10sp"
+
+            >
+
+            <TextView
+                android:id="@+id/userFName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:text="Wesley"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:id="@+id/userLName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:text="Mbate"
+                android:textColor="#000"
+
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/userEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:text="wes@gmail.com"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:text="Edit Profile"
+            android:textAllCaps="false"
+            android:background="@color/bluegreen"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            />
+
+        <Button
+            android:id="@+id/Logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:text="Logout"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="#900"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            />
+
+
+
+
+    </LinearLayout>
 
 </FrameLayout>

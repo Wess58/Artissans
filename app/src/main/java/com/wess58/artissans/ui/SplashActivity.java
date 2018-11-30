@@ -5,7 +5,6 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -61,7 +60,7 @@ Animation uptodown,downtoup;
 
     //Rotate image END --->
 
-        Typeface lobsterFonts = Typeface.createFromAsset(getAssets(), "fonts/Lobster_Two/LobsterTwo-Regular.ttf");
+        Typeface lobsterFonts = Typeface.createFromAsset(getAssets(), "fonts/Lobster_Two/lobster.ttf");
         mSplashText1.setTypeface(lobsterFonts);
         mSplashText3.setTypeface(lobsterFonts);
 

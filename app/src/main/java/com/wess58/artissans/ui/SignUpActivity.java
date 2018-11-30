@@ -6,7 +6,7 @@ import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,13 +14,13 @@ import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.google.android.gms.common.util.JsonUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.wess58.artissans.R;
 import com.wess58.artissans.models.User;
 
@@ -30,13 +30,15 @@ import butterknife.ButterKnife;
 
 //implemented onClickListener on class
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
+    DatabaseReference databaseReference;
+
     public static final String TAG = SignUpActivity.class.getSimpleName();
 
     @BindView(R.id.SinguptextView) TextView mSignUpTextView;
-    @BindView (R.id.FirstName) EditText mFirstName;
-    @BindView(R.id.LastName) EditText mLastName;
-    @BindView(R.id.emailtext) EditText mEmailText;
-    @BindView(R.id.Phone) EditText mPhone;
+    @BindView (R.id.FirstName) EditText firstName;
+    @BindView(R.id.LastName) EditText lastName;
+    @BindView(R.id.emailtext) EditText Email;
+    @BindView(R.id.Phone) EditText phone;
     @BindView(R.id.signUp) Button mSignUpButton;
     @BindView(R.id.emailConfirm) TextView mEmailConfirmText;
     @BindView(R.id.Passord) EditText mPasswordSignUp;
@@ -46,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
     private ProgressDialog mAuthProgressDialog;
+    private String userEmail;
     private String fName;
     private String lName;
     private String userPhone;
@@ -59,9 +62,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
 
+    //STORING DATA TO FIREBASE
+        databaseReference = FirebaseDatabase.getInstance().getReference("User");
+
+
         //For Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
-//        createAuthStateListener();
         createAuthProgressDialog();
 
 
@@ -91,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         boolean isGoodEmail =
                 (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
         if (!isGoodEmail) {
-            mEmailText.setError("enter a valid email address");
+            Email.setError("enter a valid email address");
             return false;
         }
         return isGoodEmail;
@@ -109,32 +115,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     //VALIDATE FORM END --->
 
 
-
-
-    //< - - - onStop and onStart Overrides Start
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//
-//    }
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        if (mAuthListener != null) {
-//            mAuth.removeAuthStateListener(mAuthListener);
-//        }
-//    }
-
-    //onStop and onStart Override END - - - >
-
     //onClick Method
     @Override
     public void onClick(View v) {
 
         if (v == mSignUpButton){
-            createNewUser();
+           addUser();
+//            createNewUser();
 
         }
 
@@ -143,11 +130,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         //< - - - CREATE USER START
     private void createNewUser() {
 
-        final String email = mEmailText.getText().toString().trim();
+        final String email = Email.getText().toString().trim();
         String password = mPasswordSignUp.getText().toString().trim();
-        fName = mFirstName.getText().toString().trim();
-        lName = mLastName.getText().toString().trim();
-        userPhone = mPhone.getText().toString().trim();
 
 
         boolean validEmail = isValidEmail(email);
@@ -169,11 +153,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
                     startActivity(intent);
                     finish();
-                    Toast.makeText(SignUpActivity.this, "Authentication Successful.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "SignUp Successful.", Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
 
                 } else {
-                    Toast.makeText(SignUpActivity.this, "Authentication  Failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "SignUp Failed.", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -191,19 +175,40 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         }
 
+//SAVING USER DETAILS TO FIREBASE REALTIME
+        public void addUser(){
 
-    //<--- STORING UserDetails START
+            userEmail = Email.getText().toString().trim();
+            fName = firstName.getText().toString().trim();
+            lName = lastName.getText().toString().trim();
+            userPhone = phone.getText().toString().trim();
 
-//    private void writeNewUser(String userID, String fName, String lName, String userPhone){
-//        User user = new User(fName, lName, userPhone);
-//        String json = JsonUtils.ToJson(user);
-//
-//        mDatabaseRef.Child("users").Child(UserID).Child("firstname").Child("lastname").Child("phone").setValueAsync(name);
-//
-//    }
+            if(!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(fName) &&
+                !TextUtils.isEmpty(lName) && !TextUtils.isEmpty(userPhone) ){
+
+                String id = databaseReference.push().getKey();
+
+                User user = new User(id, userEmail, fName, lName, userPhone );
+
+                //to store these details
+                databaseReference.child(id).setValue(user);
+                Email.setText("");
+                firstName.setText("");
+                lastName.setText("");
+                phone.setText("");
 
 
-    //STORING UserDetails END --->
+
+
+            } else {
+
+                Toast.makeText(SignUpActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+
+
 
 
 }
