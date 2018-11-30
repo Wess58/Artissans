@@ -45,10 +45,10 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-//    private void logout() {
-//        FirebaseAuth.getInstance().signOut();
-//        Intent intent = new Intent(getActivity(), LogInActivity.class);
-//        startActivity(intent);
-//    }
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getActivity(), LogInActivity.class);
+        startActivity(intent);
+    }
 
 }
