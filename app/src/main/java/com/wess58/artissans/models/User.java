@@ -1,21 +1,42 @@
 package com.wess58.artissans.models;
 
 public class User {
-    public String firstName;
-    public String lastName;
-    public String phone;
-    public String email;
+    public String id;
+    public String fName;
+    public String lName;
+    public String userPhone;
+    public String userEmail;
 
     public User(){
 
 
     }
 
-    public User(String firstName, String lastName, String phone ){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.email = email;
+    public User(String userId, String firstName, String lastName, String phone, String Email ){
+        this.id = userId;
+        this.fName = firstName;
+        this.lName = lastName;
+        this.userPhone = phone;
+        this.userEmail = Email;
     }
 
+    public String getUserId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return fName;
+    }
+
+    public String getLastName() {
+        return lName;
+    }
+
+    public String getPhone() {
+        return userPhone;
+    }
+
+    public String getEmail() {
+        return userEmail;
+    }
 }
