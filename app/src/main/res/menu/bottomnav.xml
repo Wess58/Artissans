@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/NewsItem"
+        android:icon="@drawable/news"
+        android:iconTint="#000"
+        android:title="News"
+        />
+    <item
         android:id="@+id/ArtItem"
         android:icon="@drawable/tools"
         android:iconTint="#000"
