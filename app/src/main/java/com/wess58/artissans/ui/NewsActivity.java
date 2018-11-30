@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.wess58.artissans.Network;
 import com.wess58.artissans.R;
 import com.wess58.artissans.adapter.NewsListAdapter;
+import com.wess58.artissans.fragments.ArtFeedFragment;
 import com.wess58.artissans.models.News;
 import com.wess58.artissans.services.NewsService;
 
@@ -54,37 +55,32 @@ public class NewsActivity extends AppCompatActivity  {
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return  super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-        if(id == R.id.action_logout){
-            logout();
-            return true;
-        }
-
-        if(id == R.id.navmenuitem){
-            startActivity(new Intent(NewsActivity.this, BottomNavActivity.class ));
-        }
-
-            return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_main, menu);
+//        return  super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        int id = item.getItemId();
+//        if(id == R.id.action_logout){
+//            logout();
+//            return true;
+//        }
+//
+//        if(id == R.id.navmenuitem){
+//            startActivity(new Intent(NewsActivity.this, BottomNavActivity.class ));
+//        }
+//
+//            return super.onOptionsItemSelected(item);
+//    }
 
     //END
 
     //<--- LOGOUT START && returning to MainActivity on Logout
-    private void logout() {
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(NewsActivity.this, LogInActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
 
     //LOGOUT END --->
 
@@ -96,16 +92,9 @@ public class NewsActivity extends AppCompatActivity  {
         ButterKnife.bind(this);
 
         //TOOLBAR INFLATE
-        Toolbar toolbar = findViewById(R.id.newstoolbar);
-        setSupportActionBar(toolbar);
-        getNews();
-
-        Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
-        fadeIn.setDuration(3000);
-        mNewsTextView.startAnimation(fadeIn);
-
-        Typeface lobsterFonts = Typeface.createFromAsset(getAssets(), "fonts/Lobster_Two/LobsterTwo-Regular.ttf");
-        mNewsTextView.setTypeface(lobsterFonts);
+//        Toolbar toolbar = findViewById(R.id.newstoolbar);
+//        setSupportActionBar(toolbar);
+//        getNews();
 
         //<--- CHECKING INTERNET CONNECTION START
         if(Network.isInternetAvailable(NewsActivity.this)) //returns true if internet available
@@ -121,41 +110,39 @@ public class NewsActivity extends AppCompatActivity  {
     }
 
 
-
-
-    private void getNews() {
-
-        final NewsService newsService = new NewsService();
-
-        NewsService.findArtWorks(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws  IOException {
-                try{
-                    mNews = newsService.processResults(response);
-                    Log.d("Response",response.body().string());
-
-                }catch (Exception ex){
-
-                }
-                NewsActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter = new NewsListAdapter(getApplicationContext(), mNews);
-                        mRecyclerNewsView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(NewsActivity.this);
-                        mRecyclerNewsView.setLayoutManager(layoutManager);
-                        mRecyclerNewsView.setHasFixedSize(true);
-
-                    }
-                });
-            }
-        });
-    }
+//    private void getNews() {
+//
+//        final NewsService newsService = new NewsService();
+//
+//        NewsService.findArtWorks(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws  IOException {
+//                try{
+//                    mNews = newsService.processResults(response);
+//                    Log.d("Response",response.body().string());
+//
+//                }catch (Exception ex){
+//
+//                }
+//                NewsActivity.this.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mAdapter = new NewsListAdapter(getApplicationContext(), mNews);
+//                        mRecyclerNewsView.setAdapter(mAdapter);
+//                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(NewsActivity.this);
+//                        mRecyclerNewsView.setLayoutManager(layoutManager);
+//                        mRecyclerNewsView.setHasFixedSize(true);
+//
+//                    }
+//                });
+//            }
+//        });
+//    }
 
 
 }
