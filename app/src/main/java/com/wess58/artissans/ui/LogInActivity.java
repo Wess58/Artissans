@@ -60,7 +60,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(LogInActivity.this, NewsActivity.class);
+                    Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
                     startActivity(intent);
                     finish();
 
@@ -109,14 +109,18 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         String password = mPassword.getText().toString().trim();
 
 
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(LogInActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
-            return;
+        if (!TextUtils.isEmpty(email)) {
+
+        }else{
+            Toast.makeText(LogInActivity.this, "Please enter email", Toast.LENGTH_SHORT).show();
         }
-        if (password.equals("")) {
-            mPassword.setError("Password cannot be blank");
-            return;
+
+        if (!TextUtils.isEmpty(password)){
+
+        }else{
+            Toast.makeText(LogInActivity.this, "Please enter Password", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     //VALIDATE FORM END --->
