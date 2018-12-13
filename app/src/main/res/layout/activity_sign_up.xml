@@ -149,6 +149,57 @@
         android:text="Submit"
         tools:padding="5sp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        >
+
+        <ImageButton
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:src="@drawable/trianglebutton"
+            android:scaleType="fitCenter"
+            android:background=" "
+            android:layout_weight="1"
+            />
+
+        <ImageButton
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:rotation="180"
+            android:src="@drawable/trianglebutton"
+            android:scaleType="fitCenter"
+            android:background=" "
+            android:layout_weight="1"
+            />
+
+        <ImageButton
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:rotation="30"
+            android:src="@drawable/trianglebutton"
+            android:scaleType="fitCenter"
+            android:background=" "
+            android:layout_weight="1"
+            />
+
+        <ImageButton
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:rotation="90"
+            android:src="@drawable/trianglebutton"
+            android:scaleType="fitCenter"
+            android:background=" "
+            android:layout_weight="1"
+            />
+
+
+
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/emailConfirm"
         android:layout_width="wrap_content"

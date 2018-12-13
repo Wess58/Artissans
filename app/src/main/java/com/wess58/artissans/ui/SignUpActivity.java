@@ -120,8 +120,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
 
         if (v == mSignUpButton){
-           addUser();
-//            createNewUser();
+          // addUser();
+            createNewUser();
 
         }
 
