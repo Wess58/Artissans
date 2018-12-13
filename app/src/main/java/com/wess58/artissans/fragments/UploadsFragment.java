@@ -15,6 +15,7 @@ import com.wess58.artissans.R;
 public class UploadsFragment extends Fragment {
 
 
+
     public UploadsFragment() {
         // Required empty public constructor
     }
