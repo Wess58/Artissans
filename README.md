@@ -16,11 +16,11 @@
 
  ### Screenshots
 
- ![test image size](drawable/splashscreen.png)
- ![test image size](drawable/welcome.png)
- ![test image size](drawable/login.png)
- ![test image size](drawable/imagepick.png)
- ![test image size](drawable/uploadsdisplay.png)
+ ![splashscreen](/drawable/splashscreen.png)
+ ![welcome page](/drawable/welcome.png)
+ ![login](/drawable/login.png)
+ ![imagepick](/drawable/imagepick.png)
+ ![uploaddisplay](/drawable/uploadsdisplay.png)
 
 
 ### Prerequisites
