@@ -14,6 +14,15 @@
     unimaginable digital art, pixel art or even show-stopping murals.
 
 
+ ### Screenshots
+
+ ![test image size](drawable/screenshots/splashscreen.png){:height="700px" width="400px"}
+ ![test image size](drawable/screenshots/welcome.png)
+ ![test image size](drawable/screenshots/login.png)
+ ![test image size](drawable/screenshots/imagepick.png)
+ ![test image size](drawable/screenshots/uploadsdisplay.png)
+
+
 ### Prerequisites
 
  * An up-to-date browser, preferably chrome or mozilla
