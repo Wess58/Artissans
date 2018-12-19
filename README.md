@@ -17,6 +17,7 @@
  ### Screenshots
 
  ![splashscreen](https://drive.google.com/open?id=1ueLJiaXzES08S3I9mMsHSo9lpPBaM3kW)
+ <img src="https://drive.google.com/open?id=1ueLJiaXzES08S3I9mMsHSo9lpPBaM3kW" width="100" height="100">
  ![welcome page](/drawable/welcome.png)
  ![login](/drawable/login.png)
  ![imagepick](/drawable/imagepick.png)
