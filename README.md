@@ -16,7 +16,7 @@
 
  ### Screenshots
 
- ![splashscreen](/drawable/splashscreen.png)
+ ![splashscreen](https://drive.google.com/open?id=1ueLJiaXzES08S3I9mMsHSo9lpPBaM3kW)
  ![welcome page](/drawable/welcome.png)
  ![login](/drawable/login.png)
  ![imagepick](/drawable/imagepick.png)
