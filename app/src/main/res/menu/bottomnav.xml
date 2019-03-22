@@ -9,19 +9,19 @@
         />
     <item
         android:id="@+id/ArtItem"
-        android:icon="@drawable/tools"
+        android:icon="@drawable/pallete"
         android:iconTint="#000"
         android:title="Art"
         />
     <item
         android:id="@+id/PostItem"
-        android:icon="@drawable/post"
+        android:icon="@drawable/camera"
         android:iconTint="#000"
         android:title="Post"
         />
     <item
         android:id="@+id/ProfileItem"
-        android:icon="@drawable/smiley"
+        android:icon="@drawable/person"
         android:iconTint="#000"
         android:title="Profile"
         />
