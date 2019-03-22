@@ -26,10 +26,12 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.wess58.artissans.R;
+import com.wess58.artissans.ui.CustomToast;
 
 import java.util.UUID;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -39,19 +41,18 @@ import static android.app.Activity.RESULT_OK;
  */
 public class PostFragment extends Fragment {
 
-    FirebaseStorage storage;
-    StorageReference storageReference;
+    public static View view;
+    public Uri uri;
 
     private static final int REQUEST_IMAGE_CAPTURE = 111;
     private static final int REQUEST_SELECT_IMAGE = 1;
+
     private ImageButton mImageButton;
-    @BindView(R.id.postButton) Button mPostButton;
-    @BindView(R.id.LocationEditText) EditText mLocationEditText;
-    @BindView(R.id.captionEditText) EditText mCaptionEditText;
-    @BindView(R.id.PriceEditText) EditText mPriceEditText;
-    @BindView(R.id.galleryicon) ImageView mGalleryIcon;
-    @BindView(R.id.cameraicon) ImageView mCameraIcon;
-    public Uri uri;
+
+
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
 
     public PostFragment() {
         // Required empty public constructor
@@ -62,6 +63,7 @@ public class PostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         //References can be seen as pointers to a file in the cloud
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -69,13 +71,13 @@ public class PostFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_post, container, false);
-        mCaptionEditText = view.findViewById(R.id.captionEditText);
-        mLocationEditText = view.findViewById(R.id.LocationEditText);
-        mPriceEditText = view.findViewById(R.id.PriceEditText);
+        EditText mCaptionEditText = view.findViewById(R.id.captionEditText);
+        EditText mLocationEditText = view.findViewById(R.id.LocationEditText);
+        EditText mPriceEditText = view.findViewById(R.id.PriceEditText);
         mImageButton = view.findViewById(R.id.imageButton);
-        mGalleryIcon = view.findViewById(R.id.galleryicon);
-        mCameraIcon = view.findViewById(R.id.cameraicon);
-        mPostButton = view.findViewById(R.id.postButton);
+        ImageView mGalleryIcon = view.findViewById(R.id.galleryicon);
+        ImageView mCameraIcon = view.findViewById(R.id.cameraicon);
+        Button mPostButton = view.findViewById(R.id.postButton);
 
         //<--- CLICKLISTENERS FOR IMAGE PICKING AND POST IMAGE
         mGalleryIcon.setOnClickListener(new View.OnClickListener() {
@@ -97,24 +99,19 @@ public class PostFragment extends Fragment {
             }
         });
 
-        //CLICKLISTENERS FOR IMAGE PICKING END --->
 
-
-
-
-        mCaptionEditText.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(100) });
-        mLocationEditText.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(20) });
-        mPriceEditText.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(10) });
-
-
+        mCaptionEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(100)});
+        mLocationEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
+        mPriceEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
 
 
         return view;
 
     }
 
+
     //selectImageFromGallery Intent to choose image straight from gallery
-    private void selectImageFromGallery () {
+    private void selectImageFromGallery() {
         Intent selectFromGallery = new Intent(Intent.ACTION_GET_CONTENT);
         selectFromGallery.setType("image/*");
         startActivityForResult(selectFromGallery, REQUEST_SELECT_IMAGE);
@@ -143,38 +140,42 @@ public class PostFragment extends Fragment {
 
     private void uploadImage() {
 
-        if(uri != null)
-        {
+        if (uri != null) {
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
             ref.putFile(uri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                            new CustomToast().Show_Toast(getContext(), view,
+                                    "Uploaded");
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            new CustomToast().Show_Toast(getContext(), view,
+                                    "Failed " + e.getMessage());
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
         }
     }
+
+
     //Upload Images to Firebase using FireBase Storage END --->
 
 
