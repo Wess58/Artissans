@@ -1,5 +1,6 @@
 package com.wess58.artissans.ui;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.wess58.artissans.Network;
 import com.wess58.artissans.R;
 import com.wess58.artissans.fragments.ArtFeedFragment;
 import com.wess58.artissans.fragments.PostFragment;
@@ -19,7 +22,13 @@ import com.wess58.artissans.fragments.UploadsFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BottomNavActivity extends AppCompatActivity implements View.OnClickListener{
+public class BottomNavActivity extends AppCompatActivity {
+
+    public static View view;
+
+    boolean doubleBackToExitPressedOnce = false;
+
+
 
     @BindView(R.id.navigationWidget) BottomNavigationView mBottomNavigationView;
 
@@ -28,7 +37,7 @@ public class BottomNavActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        savedInstanceState = null;
+//        savedInstanceState = null;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_nav);
         ButterKnife.bind(this);
@@ -40,17 +49,21 @@ public class BottomNavActivity extends AppCompatActivity implements View.OnClick
         mBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(new ArtFeedFragment());
 
+        if(Network.isInternetAvailable(BottomNavActivity.this)) //returns true if internet available
+        {
 
-    }
+        }
+        else
+        {
+            new CustomToast().Show_Toast(getApplicationContext(), view,
+                    "No Internet Connection");
+
+        }
+
+        //CHECKING INTERNET CONNECTION END --->
 
 
 
-
-
-    @Override
-    public void onClick(View v) {
-
-        //do sum'n
     }
 
 
@@ -90,6 +103,25 @@ public class BottomNavActivity extends AppCompatActivity implements View.OnClick
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText( BottomNavActivity.this, "Click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
 
 
 
