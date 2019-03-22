@@ -44,19 +44,19 @@ Animation uptodown,downtoup;
 
     //<--- for FadeIn anim
 
-//    Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
-//    fadeIn.setDuration(3000);
-//    mFooter.startAnimation(fadeIn);
+    Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
+    fadeIn.setDuration(2000);
+    mCircleImageView.startAnimation(fadeIn);
 
     //for FadeIn END --->
 
 
     //<--- Rotate image START
 
-    RotateAnimation rotate = new RotateAnimation(0, 720, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-    rotate.setDuration(2800);
-    rotate.setInterpolator(new LinearInterpolator());
-    mCircleImageView.startAnimation(rotate);
+//    RotateAnimation rotate = new RotateAnimation(0, 720, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+//    rotate.setDuration(2800);
+//    rotate.setInterpolator(new LinearInterpolator());
+//    mCircleImageView.startAnimation(rotate);
 
     //Rotate image END --->
 
