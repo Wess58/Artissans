@@ -3,11 +3,13 @@ package com.wess58.artissans.ui;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,11 +23,25 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.wess58.artissans.Network;
 import com.wess58.artissans.R;
+import com.wess58.artissans.Utils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static View view;
+    private static Animation shakeAnimation;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private ProgressDialog mAuthProgressDialog;
+
+    boolean doubleBackToExitPressedOnce = false;
+
 
     @BindView(R.id.Email) EditText mEmail;
     @BindView(R.id.password1) EditText mPassword;
@@ -34,16 +50,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.loginText) TextView mLoginTextView;
     @BindView(R.id.signUpLink) TextView mSignUpLink;
 
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private ProgressDialog mAuthProgressDialog;
-
-
-
-    @Override
-    public  void onBackPressed(){
-        moveTaskToBack(false);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,20 +59,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         mAuth = FirebaseAuth.getInstance();
         createAuthProgressDialog();
+        addAuth();
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        mLoginButton.setOnClickListener(this);
+        mSignUpLink.setOnClickListener(this);
 
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
-                    startActivity(intent);
-                    finish();
 
-                }
-            }
-        };
+        Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/Reem_Kufi/ReemKufi-Regular.ttf");
+        mLoginTextView.setTypeface( oldEnglishFonts);
 
 
         //<--- CHECKING INTERNET CONNECTION START
@@ -77,19 +77,16 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         }
         else
         {
-            Toast.makeText(LogInActivity.this,"No Internet Connection",Toast.LENGTH_LONG).show();
-        }
+            new CustomToast().Show_Toast(getApplicationContext(), view,
+                    "No Internet Connection");        }
 
         //CHECKING INTERNET CONNECTION END --->
 
 
 
 
-        Typeface oldEnglishFonts = Typeface.createFromAsset(getAssets(), "fonts/Reem_Kufi/ReemKufi-Regular.ttf");
-        mLoginTextView.setTypeface( oldEnglishFonts);
 
-        mLoginButton.setOnClickListener(this);
-        mSignUpLink.setOnClickListener(this);
+
     }
 
     //<--- PROGRESSDIALOG START
@@ -97,86 +94,128 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private void createAuthProgressDialog() {
         mAuthProgressDialog = new ProgressDialog(this);
         mAuthProgressDialog.setTitle("Loading ...");
-        mAuthProgressDialog.setMessage("Authenticating in Progress...");
+        mAuthProgressDialog.setMessage("Authentication in Progress...");
         mAuthProgressDialog.setCancelable(false);
 
     }
     //PROGRESSDIALOG END --->
 
-    //<---VALIDATE FORMS START
-    private void loginWithPassword() {
-        String email = mEmail.getText().toString().trim();
-        String password = mPassword.getText().toString().trim();
-
-
-        if (!TextUtils.isEmpty(email)) {
-
-        }else{
-            Toast.makeText(LogInActivity.this, "Please enter email", Toast.LENGTH_SHORT).show();
-        }
-
-        if (!TextUtils.isEmpty(password)){
-
-        }else{
-            Toast.makeText(LogInActivity.this, "Please enter Password", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    //VALIDATE FORM END --->
-
     @Override
     public void onClick(View v) {
-        if(v == mSignUpLink){
-            Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
-            startActivity(intent);
-
-        }
 
         if (v == mLoginButton){
-            loginWithPassword();
-            SignInUser();
+
+            checkValidation();
+        }
+
+        if(v == mSignUpLink){
+
+            Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
+            startActivity(intent);
+            finish();
+
         }
 
     }
 
-    private void SignInUser() {
+    // Check Validation before login
+    private void checkValidation () {
+        // Get email id and password
+        String getEmailId = mEmail.getText().toString();
+        String getPassword = mPassword.getText().toString();
 
-        final String email = mEmail.getText().toString().trim();
-        String password = mPassword.getText().toString().trim();
+        // Check patter for email id
+        Pattern p = Pattern.compile(Utils.regEx);
 
+        Matcher m = p.matcher(getEmailId);
+
+        // Check for both field is empty or not
+
+        if (getEmailId.equals("") || getEmailId.length() == 0
+                || getPassword.equals("") || getPassword.length() == 0) {
+            mLoginButton.startAnimation(shakeAnimation);
+            new CustomToast().Show_Toast(getBaseContext(), view,
+                    "Enter both credentials.");
+
+        }
+        // Check if email id is valid or not
+        else if (!m.find())
+            new CustomToast().Show_Toast(getApplicationContext(), view,
+                    "Your Email Id is Invalid.");
+            // Else do login and do your stuff
+        else
+            login(mEmail.getText().toString(),mPassword.getText().toString());
+
+    }
+
+
+
+
+    public  void login (String email,String password){
         mAuthProgressDialog.show();
-
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         mAuthProgressDialog.dismiss();
-                        if (task.isSuccessful()) {
-                            Intent intent = new Intent(LogInActivity.this, NewsActivity.class);
+                        if(task.isSuccessful()){
+                            Intent intent=new Intent(LogInActivity.this,BottomNavActivity.class);
                             startActivity(intent);
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(LogInActivity.this, "Invalid Credentials.",
-                                    Toast.LENGTH_SHORT).show();
-
-                            }
+                            finish();
                         }
+                        else{
+                            new CustomToast().Show_Toast(getApplicationContext(), view,
+                                    "Authentication Failed.");                        }
+                    }
                 });
-        }
+    }
+
+    public void addAuth(){
+        mAuthListener=new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null){
+                    Intent intent=new Intent( LogInActivity.this, BottomNavActivity.class);
+                    startActivity(intent);
+                }
+            }
+        };
+    }
+
 
     @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText( LogInActivity.this, "Click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 
     @Override
-    public void onStop() {
+    protected  void onStart(){
+        super.onStart();
+        FirebaseUser user=mAuth.getCurrentUser();
+        if(user!=null){
+            mAuth.addAuthStateListener(mAuthListener);
+        }
+    }
+
+    @Override
+    protected  void  onStop(){
         super.onStop();
-        if (mAuthListener != null) {
+        if(mAuthListener!=null){
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
