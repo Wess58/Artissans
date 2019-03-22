@@ -20,8 +20,6 @@
     <string name="lastname">LastName</string>
     <string name="firstname">FirstName</string>
     <string name="welcome">Welcome To Artissans</string>
-    <string name="confirmation">Check your Email to get link for credentials confirmation</string>
-    <string name="secured">All your info is kept confidential!</string>
     <string name="About">
         Welcome to Artissans App.Our aim is to bring people with this glorious artistic
         power to imagine, innovate and create images beyond normal comprehension because we believe
@@ -31,7 +29,10 @@
     </string>
     <string name="dialog"> Don\'t have an account?</string>
     <string name="SignUpLink">Sign Up</string>
-    <string name="footer">\@2018 Artissans</string>
+    <string name="footer">\@2019 Artissans</string>
+    <string name="invalid">Invalid Credentials</string>
+    <string name="back_to_login">Already have an account?</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
