@@ -13,7 +13,8 @@ public class News {
 
             this.mAccessionYear = accessionyear;
             this.mTechnique = technique;
-            this.mCopyright = copyright;
+        switch (this.mCopyright = copyright) {
+        }
             this.mUrl = url;
             this.mImage = image;
             this.mClass = classification;
