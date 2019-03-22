@@ -3,13 +3,17 @@ package com.wess58.artissans.ui;
 
 import android.app.ProgressDialog;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
@@ -21,8 +25,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.wess58.artissans.Network;
 import com.wess58.artissans.R;
+import com.wess58.artissans.Utils;
 import com.wess58.artissans.models.User;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,29 +39,31 @@ import butterknife.ButterKnife;
 
 //implemented onClickListener on class
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
+
+    //FOR FIREBASE AUTH
+    private FirebaseAuth mAuth;
+    private ProgressDialog mAuthProgressDialog;
+
     DatabaseReference databaseReference;
 
-    public static final String TAG = SignUpActivity.class.getSimpleName();
+    public static View view;
+    private static Animation shakeAnimation;
 
+    boolean doubleBackToExitPressedOnce = false;
+
+
+
+
+    @BindView(R.id.SignUpLayout) LinearLayout mSignUpLayout;
     @BindView(R.id.SinguptextView) TextView mSignUpTextView;
     @BindView (R.id.FirstName) EditText firstName;
     @BindView(R.id.LastName) EditText lastName;
     @BindView(R.id.emailtext) EditText Email;
-    @BindView(R.id.Phone) EditText phone;
+    @BindView(R.id.Phone) EditText mPhone;
     @BindView(R.id.signUp) Button mSignUpButton;
-    @BindView(R.id.emailConfirm) TextView mEmailConfirmText;
+    @BindView(R.id.back_to_login) TextView mBack_to_login;
     @BindView(R.id.Passord) EditText mPasswordSignUp;
-
-
-    //member variable to get the instance of the FirebaseAuth object
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseAuth mAuth;
-    private ProgressDialog mAuthProgressDialog;
-    private String userEmail;
-    private String fName;
-    private String lName;
-    private String userPhone;
-
+    @BindView(R.id.confirm_Password) EditText mConfirm_Password;
 
 
 
@@ -75,10 +86,27 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         mSignUpTextView.setTypeface(oldEnglishFonts);
 
         Typeface modulaFonts = Typeface.createFromAsset(getAssets(), "fonts/Medula_One/MedulaOne-Regular.ttf");
-        mEmailConfirmText.setTypeface(modulaFonts);
+        mBack_to_login.setTypeface(modulaFonts);
 
         //setting onClickListener New Way :-)
         mSignUpButton.setOnClickListener(this);
+
+        shakeAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+
+        //<--- CHECKING INTERNET CONNECTION START
+        if(Network.isInternetAvailable(SignUpActivity.this)) //returns true if internet available
+        {
+
+        }
+        else
+        {
+            new CustomToast().Show_Toast(getApplicationContext(), view,
+                    "No Internet Connection");
+
+        }
+
+        //CHECKING INTERNET CONNECTION END --->
+
     }
 
     //<--- PROGRESSDIALOG START
@@ -86,33 +114,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void createAuthProgressDialog() {
         mAuthProgressDialog = new ProgressDialog(this);
         mAuthProgressDialog.setTitle("Loading ...");
-        mAuthProgressDialog.setMessage("Authenticating in Progress...");
+        mAuthProgressDialog.setMessage("Creating Account...");
         mAuthProgressDialog.setCancelable(false);
 
     }
     //PROGRESSDIALOG END --->
-
-    //<---VALIDATE FORMS START
-    private boolean isValidEmail(String email) {
-        boolean isGoodEmail =
-                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
-        if (!isGoodEmail) {
-            Email.setError("enter a valid email address");
-            return false;
-        }
-        return isGoodEmail;
-    }
-
-
-    private boolean isValidPassword(String password) {
-        if (password.length() < 6) {
-            mPasswordSignUp.setError("create a password with at least 6 characters");
-            return false;
-        }
-        return true;
-    }
-
-    //VALIDATE FORM END --->
 
 
     //onClick Method
@@ -120,95 +126,115 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
 
         if (v == mSignUpButton){
-          // addUser();
-            createNewUser();
-
+            checkValidation();
         }
 
     }
 
         //< - - - CREATE USER START
-    private void createNewUser() {
+        private void SignInUser() {
 
-        final String email = Email.getText().toString().trim();
-        String password = mPasswordSignUp.getText().toString().trim();
+            final String email = Email.getText().toString().trim();
+            String password = mPasswordSignUp.getText().toString().trim();
 
 
-        boolean validEmail = isValidEmail(email);
-        boolean validPassword = isValidPassword(password);
-        if(!validEmail || !validPassword) return;
+            mAuthProgressDialog.show();
 
-        //this line is only called after the form validation methods have returned true
-        mAuthProgressDialog.show();
+            mAuth.createUserWithEmailAndPassword(email, password )
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            mAuthProgressDialog.dismiss();
+                            if (task.isSuccessful()) {
+                                Intent intent = new Intent(SignUpActivity.this, BottomNavActivity.class);
+                                startActivity(intent);
+                                finish();
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(SignUpActivity.this, "Invalid Credentials.",
+                                        Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    });
+        }
+
+
+    // Check Validation Method
+    private void checkValidation() {
+
+        // Get all edittext texts
+        String getFirstName = firstName.getText().toString();
+        String getLastName = lastName.getText().toString();
+        String getEmailId = Email.getText().toString();
+        String getMobileNumber = mPhone.getText().toString();
+        String getPassword = mPasswordSignUp.getText().toString();
+        String getConfirmPassword = mConfirm_Password.getText().toString();
+
+        // Pattern match for email id
+        Pattern p = Pattern.compile(Utils.regEx);
+        Matcher m = p.matcher(getEmailId);
+
+        // Check if all strings are null or not
+        if (    getFirstName.equals("") || getFirstName.length() == 0
+                ||getLastName.equals("") || getLastName.length() == 0
+                || getEmailId.equals("") || getEmailId.length() == 0
+                || getMobileNumber.equals("") || getMobileNumber.length() == 0
+                || getPassword.equals("") || getPassword.length() == 0
+                || getConfirmPassword.equals("") || getConfirmPassword.length() == 0){
+
+            mSignUpButton.startAnimation(shakeAnimation);
+            new CustomToast().Show_Toast(getApplicationContext(), view,
+                    "All fields are required.");
+        }
+
+
+
+        // Check if email id valid or not
+        else if (!m.find())
+            new CustomToast().Show_Toast(getApplicationContext(), view,
+                    "Your Email Id is Invalid.");
+
+            // Check if both password should be equal
+        else if (!getConfirmPassword.equals(getPassword))
+            new CustomToast().Show_Toast(getApplicationContext(), view,
+                    "Both password doesn't match.");
+
+            // Else do signup or do your stuff
+        else
+            SignInUser();
+
+//   Make sure user should check Terms and Conditions checkbox
+// *TO BE USED LATER*
+//        else if (!terms_conditions.isChecked())
+//            new CustomToast().Show_Toast(getApplicationContext(), view,
+//                    "Please select Terms and Conditions.");
+
+
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText( SignUpActivity.this, "Click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
 
             @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-        //we dismiss the dialog so that the user may either continue using the app, or view any error messages.
-                mAuthProgressDialog.dismiss();
-
-                if (task.isSuccessful()) {
-                    Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(SignUpActivity.this, "SignUp Successful.", Toast.LENGTH_SHORT).show();
-                    FirebaseUser user = mAuth.getCurrentUser();
-
-                } else {
-                    Toast.makeText(SignUpActivity.this, "SignUp Failed.", Toast.LENGTH_SHORT).show();
-
-                }
+            public void run() {
+                doubleBackToExitPressedOnce=false;
             }
-
-            });
-
-//        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if (task.isSuccessful()){
-//                    Toast.makeText(SignUpActivity.this, "Email Sent.",Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
-        }
-
-//SAVING USER DETAILS TO FIREBASE REALTIME
-        public void addUser(){
-
-            userEmail = Email.getText().toString().trim();
-            fName = firstName.getText().toString().trim();
-            lName = lastName.getText().toString().trim();
-            userPhone = phone.getText().toString().trim();
-
-            if(!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(fName) &&
-                !TextUtils.isEmpty(lName) && !TextUtils.isEmpty(userPhone) ){
-
-                String id = databaseReference.push().getKey();
-
-                User user = new User(id, userEmail, fName, lName, userPhone );
-
-                //to store these details
-                databaseReference.child(id).setValue(user);
-                Email.setText("");
-                firstName.setText("");
-                lastName.setText("");
-                phone.setText("");
-
-
-
-
-            } else {
-
-                Toast.makeText(SignUpActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
-            }
-
-        }
-
-
-
+        }, 2000);
+    }
 
 
 }
