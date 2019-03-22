@@ -38,7 +38,7 @@
         android:layout_marginTop="40sp"
         android:text="LOGIN"
         android:textSize="30sp"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:textStyle="bold"
         android:textCursorDrawable="@color/bluegreen"
         android:inputType="textEmailAddress"
@@ -115,6 +115,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textSize="16sp"
+        android:textColor="#000"
         android:text="@string/dialog"
         />
 
@@ -124,8 +126,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/SignUpLink"
-        android:textColor="#fff"
-        android:textStyle="bold" />
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
 
 
 
