@@ -15,13 +15,12 @@
 
 
  ### Screenshots
+ <img src="app/screenshots/Splashscreen.png" width="200" height="400" style="margin:20px;">
+ <img src="app/screenshots/Welcome.png" width="200" height="400" style="margin:20px;">
+ <img src="app/screenshots/LoginPage.png" width="200" height="400" style="margin:20px;">
+ <img src="app/screenshots/ArtFeed.png" width="200" height="400" style="margin:20px;">
+ <img src="app/screenshots/PhotoUpload.png" width="200" height="400" style="margin:20px;">
 
- ![splashscreen](https://drive.google.com/open?id=1ueLJiaXzES08S3I9mMsHSo9lpPBaM3kW)
- <img src="https://drive.google.com/file/d/1ueLJiaXzES08S3I9mMsHSo9lpPBaM3kW/view?usp=sharing" width="100" height="100">
- ![welcome page](/drawable/welcome.png)
- ![login](/drawable/login.png)
- ![imagepick](/drawable/imagepick.png)
- ![uploaddisplay](/drawable/uploadsdisplay.png)
 
 
 ### Prerequisites
