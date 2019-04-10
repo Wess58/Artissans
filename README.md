@@ -16,14 +16,14 @@
 
  ### Screenshots
  <p align="center">
- <img src="app/screenshots/Splashscreen.png" width="220" height="400" align="left" style="border:2px solid black;">
- <img src="app/screenshots/Welcome.png" width="220" height="400" align="center" style="border:2px solid black;">
- <img src="app/screenshots/LoginPage.png" width="220" height="400" align="right" style="border:2px solid black;">
+ <img src="app/screenshots/Splashscreen.png" width="220" height="400" align="left">
+ <img src="app/screenshots/Welcome.png" width="220" height="400" align="center">
+ <img src="app/screenshots/LoginPage.png" width="220" height="400" align="right">
  </p>
 
  <p align="center">
- <img src="app/screenshots/ArtFeed.png" width="220" height="400" align="left" style="border:2px solid black;">
- <img src="app/screenshots/PhotoUpload.png" width="200" height="400" align="center" style="border:2px solid black;">
+ <img src="app/screenshots/ArtFeed.png" width="220" height="400" align="left">
+ <img src="app/screenshots/PhotoUpload.png" width="200" height="400" align="center">
  </p>
 
 
